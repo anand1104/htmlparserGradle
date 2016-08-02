@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+
+			http://www.springframework.org/schema/task
+			http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+			
+	<task:scheduled-tasks scheduler="taskScheduler">
+<!-- 		<task:scheduled ref="shortMessage" method="shortMessage" cron="0 0 12 * * *"/>		 -->
+
+<!-- 		<task:scheduled ref="srsgrocery" method="hitApi" cron="0 0 7 * * *"/> -->
+<!-- 		<task:scheduled ref="zopnow" method="hitApi" cron="0 0 8 * * *"/> -->
+<!-- 		<task:scheduled ref="peppertap" method="hitApi" cron="0 0 9 * * *"/> -->
+<!-- 		<task:scheduled ref="bigbasket" method="hitApi" cron="0 0 10 * * *"/> -->
+<!-- 		<task:scheduled ref="grocermaxgurgaon" method="hitApi" cron="0 15 12 * * *"/> -->
+		
+<!-- 		<task:scheduled ref="pcompdashhit" method="hitApi" cron="0 5 1,4,7,10,15,20,23 * * *"/> -->
+		<task:scheduled ref="ROOThit" method="hitApi" cron="0 0/60 * * * ?"/>		
+				
+	</task:scheduled-tasks>
+
+	<bean id="shortMessage" class="com.ahoy.parser.cron.Cron" />
+	
+	<bean id="pcompdashhit" class="com.ahoy.parser.cron.Cron" >
+		<property name="url" value="http://shopezzy.com/pcompdash/chngeostatus/1/10" />
+	</bean>
+	
+<!-- 	<bean id="dashhit" class="com.ahoy.parser.cron.Cron" > -->
+<!-- 		<property name="url" value="http://shopezzy.com/dash/getGroceryCategoryList?fType=1" /> -->
+<!-- 	</bean> -->
+	
+	<bean id="ROOThit" class="com.ahoy.parser.cron.Cron" >
+			<property name="url" value="http://shopezzy.com/cities?country=India" />
+	</bean>
+	
+	<bean id="srsgrocery" class="com.ahoy.parser.cron.Cron" >
+		<property name="url" value="http://shopezzy.com/parsedata/srsgrocery" />
+	</bean>	
+
+	<bean id="zopnow" class="com.ahoy.parser.cron.Cron" >
+		<property name="url" value="http://shopezzy.com/parsedata/zopnow" />
+	</bean>
+
+	<bean id="peppertap" class="com.ahoy.parser.cron.Cron" >
+		<property name="url" value="http://shopezzy.com/parsedata/peppertap" />
+	</bean>
+
+	<bean id="bigbasket" class="com.ahoy.parser.cron.Cron" >
+		<property name="url" value="http://shopezzy.com/parsedata/bigbasket" />
+	</bean>
+
+	<bean id="grocermaxgurgaon" class="com.ahoy.parser.cron.Cron" >
+		<property name="url" value="http://shopezzy.com/pcompdash/proceed/13" />
+	</bean>
+	
+	<bean id="taskScheduler" class="org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler">
+		<property name="daemon" value="true"/>
+		<property name="poolSize" value="5"/>
+	</bean>
+
+	<task:annotation-driven />      
+</beans>

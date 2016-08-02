@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+    <!--     Scheduler Mapping START -->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/parser-scheduler.xml
+        </param-value>
+    </context-param>
+    <!--     Scheduler Mapping END -->
+
+    <servlet>
+        <servlet-name>Tradus</servlet-name>
+        <servlet-class>com.ahoy.parser.api.Tradus
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Tradus</servlet-name>
+        <url-pattern>/tradus</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BigBasket</servlet-name>
+        <servlet-class>com.ahoy.parser.api.BigBasket
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>BigBasket</servlet-name>
+        <url-pattern>/bigbasket</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HypercityIndia</servlet-name>
+        <servlet-class>com.ahoy.parser.api.HypercityIndia
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HypercityIndia</servlet-name>
+        <url-pattern>/hypercity</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LocalBanya</servlet-name>
+        <servlet-class>com.ahoy.parser.api.LocalBanya
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LocalBanya</servlet-name>
+        <url-pattern>/localbanya</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RelianceFreshDirect</servlet-name>
+        <servlet-class>
+            com.ahoy.parser.api.RelianceFreshDirect
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RelianceFreshDirect</servlet-name>
+        <url-pattern>/reliancefresh</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MangoShoppers</servlet-name>
+        <servlet-class>com.ahoy.parser.api.MangoShoppers
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MangoShoppers</servlet-name>
+        <url-pattern>/mangoshoppers</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EasyRation</servlet-name>
+        <servlet-class>com.ahoy.parser.api.EasyRation
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>EasyRation</servlet-name>
+        <url-pattern>/easyration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShopRation</servlet-name>
+        <servlet-class>com.ahoy.parser.api.ShopRation
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ShopRation</servlet-name>
+        <url-pattern>/shopration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ESuvidhaOnline</servlet-name>
+        <servlet-class>com.ahoy.parser.api.ESuvidhaOnline
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ESuvidhaOnline</servlet-name>
+        <url-pattern>/esuvidha</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SabjiOnWheels</servlet-name>
+        <servlet-class>com.ahoy.parser.api.SabjiOnWheels
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SabjiOnWheels</servlet-name>
+        <url-pattern>/onwheels</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GrosseryHub</servlet-name>
+        <servlet-class>com.ahoy.parser.api.GrosseryHub
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GrosseryHub</servlet-name>
+        <url-pattern>/grosseryhub</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OneKirana</servlet-name>
+        <servlet-class>com.ahoy.parser.api.OneKirana
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>OneKirana</servlet-name>
+        <url-pattern>/onekirana</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Jagsfresh</servlet-name>
+        <servlet-class>com.ahoy.parser.api.Jagsfresh
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Jagsfresh</servlet-name>
+        <url-pattern>/jagsfresh</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NatureBasket</servlet-name>
+        <servlet-class>com.ahoy.parser.api.NatureBasket
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NatureBasket</servlet-name>
+        <url-pattern>/naturebasket</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SrsGrocery</servlet-name>
+        <servlet-class>com.ahoy.parser.api.SrsGrocery
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SrsGrocery</servlet-name>
+        <url-pattern>/srsgrocery</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Meragrocer</servlet-name>
+        <servlet-class>com.ahoy.parser.api.Meragrocer
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Meragrocer</servlet-name>
+        <url-pattern>/meragrocer</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Peppertap</servlet-name>
+        <servlet-class>com.ahoy.parser.api.Peppertap
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Peppertap</servlet-name>
+        <url-pattern>/peppertap</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RapidRation</servlet-name>
+        <servlet-class>com.ahoy.parser.api.RapidRation
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RapidRation</servlet-name>
+        <url-pattern>/rapidration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>View</servlet-name>
+        <servlet-class>com.ahoy.parser.ui.View
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>View</servlet-name>
+        <url-pattern>/view</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DownloadCsv</servlet-name>
+        <servlet-class>com.ahoy.parser.ui.DownloadCsv
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DownloadCsv</servlet-name>
+        <url-pattern>/dcsv</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Edit</servlet-name>
+        <servlet-class>com.ahoy.parser.ui.Edit
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Edit</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Update</servlet-name>
+        <servlet-class>com.ahoy.parser.ui.Update
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Update</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateCategory</servlet-name>
+        <servlet-class>com.ahoy.parser.ui.UpdateCategory
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UpdateCategory</servlet-name>
+        <url-pattern>/uc</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Summary</servlet-name>
+        <servlet-class>com.ahoy.parser.ui.Summary
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Summary</servlet-name>
+        <url-pattern>/smry</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Category</servlet-name>
+        <servlet-class>com.ahoy.parser.ui.Category
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Category</servlet-name>
+        <url-pattern>/c</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ProcessCategories</servlet-name>
+        <servlet-class>
+            com.ahoy.parsetest.ProcessCategories
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ProcessCategories</servlet-name>
+        <url-pattern>/pc</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>smry</welcome-file>
+    </welcome-file-list>
+
+    <display-name>HtmlParser</display-name>
+
+</web-app>

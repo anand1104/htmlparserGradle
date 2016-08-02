@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+	
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/parse_data</property>
+		
+		<property name="hibernate.connection.username">root</property>
+<!-- 	<property name="hibernate.connection.password">A|-|0y@123</property> -->
+		<property name="hibernate.connection.password">root</property>
+ 
+		<!--  <property name="hibernate.connection.pool_size">10</property>  -->
+		<property name="hibernate.show_sql">false</property>
+		<property name="current_session_context_class">thread</property>
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>       
+		<property name="hibernate.c3p0.min_size">5</property>
+		<property name="hibernate.c3p0.max_size">20</property>
+		<property name="hibernate.c3p0.timeout">300</property>
+		<property name="hibernate.c3p0.max_statements">50</property>
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
+		<property name="hibernate.c3p0.preferredTestQuery">select 1;</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.jdbc.batch_size">10</property>
+		
+		<mapping class="com.ahoy.parser.domain.ParseDataDo" />
+		<mapping class="com.ahoy.parser.domain.TradusDataDo" />
+		<mapping class="com.ahoy.parser.domain.MerchantDo" />
+		<mapping class="com.ahoy.parser.domain.CityDo" />
+<!-- 		<mapping class="com.ahoy.parser.domain.MerchantCityMapDo" /> -->
+		<mapping class="com.ahoy.parser.domain.MerchantCategoryDo" />
+		<mapping class="com.ahoy.parser.domain.MerchantSubCatDo" />
+		<mapping class="com.ahoy.parser.domain.ShopezzyCategoryDo" />
+		<mapping class="com.ahoy.parser.domain.ShopezzySubCatDo" />
+		<mapping class="com.ahoy.parser.domain.MerchantShopezzyCatMapDo" />
+		<mapping class="com.ahoy.parser.domain.ItemListDo" />
+		<mapping class="com.ahoy.parser.domain.ItemDetailDo" />
+		<mapping class="com.ahoy.parser.domain.OfflineItemDo" />
+		<mapping class="com.ahoy.parser.domain.ProductDo" />
+		<mapping class="com.ahoy.parser.domain.BrandDo" />
+		<mapping class="com.ahoy.parser.domain.CompanyDo" />
+		<mapping class="com.ahoy.parser.domain.ProductVarientsDo" />
+	</session-factory>
+	
+</hibernate-configuration>

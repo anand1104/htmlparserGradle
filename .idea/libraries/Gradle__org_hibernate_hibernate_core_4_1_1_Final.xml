@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.hibernate:hibernate-core:4.1.1.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/4.1.1.Final/715a4ad35bd4255e703a03e3115bb8df7e4e18d8/hibernate-core-4.1.1.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/4.1.1.Final/d860db6a26aa8497d226f3b0970e137ded609cd1/hibernate-core-4.1.1.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

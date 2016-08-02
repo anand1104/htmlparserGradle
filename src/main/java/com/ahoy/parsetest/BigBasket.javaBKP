@@ -1,0 +1,268 @@
+package com.ahoy.parsetest;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Collection;
+import java.util.Map;
+
+import org.jsoup.Connection;
+import org.jsoup.Connection.KeyVal;
+import org.jsoup.Connection.Method;
+import org.jsoup.Connection.Response;
+import org.jsoup.Jsoup;
+
+import com.ahoy.parser.util.GetStackElements;
+
+public class BigBasket extends Thread{
+	public static void main(String[] args) throws IOException{
+	try{
+		
+		System.out.println("1 START=================");
+		Connection connection1 = Jsoup.connect("http://bigbasket.com/choose-city/?next=/").followRedirects(true).method(Method.GET).timeout(25000);
+		
+		Response response = connection1.execute();
+		System.out.println(response.statusCode()+" | "+response.statusMessage());
+		
+		System.out.println("========Request Cookies============");
+		Map<String, String> reqCookie = connection1.request().cookies();		
+		for(Map.Entry<String, String> map:reqCookie.entrySet()){
+			System.out.println(map.getKey()+": "+map.getValue());
+		}
+		
+		System.out.println("========Request Header============");
+		Map<String, String> reqHeaders = connection1.request().headers();		
+		for(Map.Entry<String, String> map:reqHeaders.entrySet()){
+			System.out.println(map.getKey()+": "+map.getValue());
+		}
+	
+		System.out.println("========Response Cookies============");
+		Map<String, String> cookies = response.cookies();		
+		for(Map.Entry<String, String> map:cookies.entrySet()){
+			System.out.println(map.getKey()+": "+map.getValue());
+		}
+		System.out.println("========Response Headers============");
+		Map<String, String> header = response.headers();		
+		for(Map.Entry<String, String> map:header.entrySet()){
+			System.out.println(map.getKey()+": "+map.getValue());
+		}
+		
+		System.out.println("=========================1 END===================");
+		
+		
+		Thread.sleep(8000);
+		
+		System.out.println("=========================2 START=================");
+//		String plae1  ="{\"address_components\":[{\"long_name\":\"Mayfield Garden\",\"short_name\":\"Mayfield Garden\",\"types\":[\"sublocality_level_2\",\"sublocality\",\"political\"]},{\"long_name\":\"Sector 51\",\"short_name\":\"Sector 51\",\"types\":[\"sublocality_level_1\",\"sublocality\",\"political\"]},{\"long_name\":\"Gurgaon\",\"short_name\":\"Gurgaon\",\"types\":[\"locality\",\"political\"]},{\"long_name\":\"Gurgaon\",\"short_name\":\"Gurgaon\",\"types\":[\"administrative_area_level_2\",\"political\"]},{\"long_name\":\"Haryana\",\"short_name\":\"HR\",\"types\":[\"administrative_area_level_1\",\"political\"]},{\"long_name\":\"India\",\"short_name\":\"IN\",\"types\":[\"country\",\"political\"]}],\"adr_address\":\"<span class=\\\"extended-address\\\">Mayfield Garden, Sector 51</span>, <span class=\\\"locality\\\">Gurgaon</span>, <span class=\\\"region\\\">Haryana</span>, <span class=\\\"country-name\\\">India</span>\",\"formatted_address\":\"Mayfield Garden, Sector 51, Gurgaon, Haryana, India\",\"geometry\":{\"location\":{\"G\":28.4253544,\"K\":77.06304709999995,\"latitude\":28.4253544,\"longitude\":77.06304709999995},\"viewport\":{\"Ia\":{\"G\":28.4192778,\"j\":28.431145},\"Ca\":{\"j\":77.0553248,\"G\":77.0683401}}},\"icon\":\"https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png\",\"id\":\"7cd56ab42afcdee079ded0fe56286d6d4d41c2b6\",\"name\":\"Mayfield Garden\",\"place_id\":\"ChIJMV8U24EYDTkRjiEreqfojG0\",\"reference\":\"CqQBkQAAADRKtvOZJdBE-gYTForCgSjM_cs0bsD4PqVnWnBa2T20t7ZpAigqfEnbIp47PYwvlB1WdUKtW4oTcl9Rabg1VnYcg1iGueq28IypAwJs3i3pbvKBqE0AGBqA-NLWe-JGYBmGL8rYUbXsxtDzZiynF8WCg9Ufv6H2lLARnnwBkuCVcJyLeHoTqq_oXBF7DmG1QbMMio-XWuKtwHTPADle_YQSEEBG7NN1USk4qhalFeIKZ6EaFGj56vwUBMDXQfSuH7eAyL5Er4z2\",\"scope\":\"GOOGLE\",\"types\":[\"sublocality_level_2\",\"sublocality\",\"political\"],\"url\":\"https://maps.google.com/maps/place?q=Mayfield+Garden,+Sector+51,+Gurgaon,+Haryana,+India&ftid=0x390d1881db145f31:0x6d8ce8a77a2b218e\",\"vicinity\":\"Mayfield Garden\",\"html_attributions\":[]}";
+		String place = processURL("http://localhost:8080/shopezzyimages/location.json");
+		String csrfToken = response.cookies().get("csrftoken");
+		String _bb_ftvid  = response.cookies().get("_bb_ftvid");
+		String _bb_vid = response.cookies().get("_bb_vid");
+		String sessionId = response.cookies().get("sessionid");
+		System.out.println(place.replaceAll(" ",""));
+		System.out.println("csrfToken: "+csrfToken+" | _bb_ftvid: "+_bb_ftvid+" | _bb_vid: "+_bb_vid+" | sessionId: "+sessionId);
+		
+//		Document doc = Jsoup.connect("http://bigbasket.com/choose-city/")
+////				.cookies(cookies)
+//				.header("Cookie","_bb_ftvid="+response.cookies().get("_bb_ftvid")+"; _bb_pop=1;_bb_tc=0; _bb_vid="+response.cookies().get("_bb_vid")+";csrftoken="+csrfToken+"; _ga=GA1.2.846238140.1445950438; _gat=1; sessionid="+response.cookies().get("sessionid")+";_bb_rd=6;_bb_rdt=MzE1MDEzMjI5MQ==.0")
+//				.header("Content-Type", "application/json")
+//				.data("place",URLEncoder.encode(place, "UTF-8"))
+//				.data("csrfmiddlewaretoken",csrfToken)
+//				.ignoreContentType(true)
+//				.method(Method.POST).get();
+		
+//		System.out.println(doc);
+		
+		
+		
+//		String __rdt= "MzE1MDEzMjI5MQ==.0";
+		Connection connection2 = Jsoup.connect("http://bigbasket.com/choose-city/")
+				//http://shopezzy.com/parser1/test
+				//http://bigbasket.com/choose-city/
+				.method(Method.POST)
+				.followRedirects(true)
+				.referrer("http://bigbasket.com/choose-city/?next=/")
+				
+				.header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
+				.header("Accept-Encoding", "gzip, deflate, sdch")
+				.header("Accept-Language", "en-US,en;q=0.8")
+				.header("Cache-Control", "max-age=0")
+				.header("Connection", "keep-alive")
+				.header("Content-Length", "2680")
+				.header("Content-Type", "application/x-www-form-urlencoded")
+				.header("Host", "bigbasket.com")
+				.header("Origin", "http://bigbasket.com")
+				.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36")
+				
+				.cookie("_bb_ftvid", _bb_ftvid)
+				.cookie("_bb_vid", _bb_vid)
+				.cookie("csrftoken", csrfToken)
+				.cookie("sessionid", sessionId)
+				.cookie("_bb_rdt", "MzE1MDEzMjI5MQ==.0") 				
+				.cookie("_bb_pop", "1") 
+				.cookie("_bb_tc", "0") 
+				.cookie("_bb_rd", "6") 
+												
+				.data("places",place)
+				.data("csrfmiddlewaretoken",csrfToken)
+				.data("address_id","")
+				.data("city_id","1")
+				.data("next","/?next=%2F");
+//				uiv2-selection
+//				.timeout(25000);
+		Response response2 = connection2.execute();
+		
+		System.out.println(response2.statusCode()+" | "+response2.statusMessage()+" | "+response2.url());
+		
+		System.out.println("========Request Cookies============");
+		Map<String, String> cookies1 = connection2.request().cookies();
+		System.out.println(cookies1.size());
+		for(Map.Entry<String, String> map:cookies1.entrySet()){
+			System.out.println(map.getKey()+": "+map.getValue());
+		}
+		System.out.println("========Request Headers============");
+		Map<String, String> header1 = connection2.request().headers();		
+		for(Map.Entry<String, String> map:header1.entrySet()){
+			System.out.println(map.getKey()+": "+map.getValue());
+		}
+		
+		System.out.println("======== Request Parameters ============");
+		Collection<KeyVal> col = connection2.request().data();
+		System.out.println(col.size());		
+		for(KeyVal keyval:col){
+			System.out.println(keyval.key()+": "+keyval.value());
+		}
+		
+		
+		System.out.println("========Response2 Cookies============");
+		Map<String, String> cookies2 = response2.cookies();		
+		for(Map.Entry<String, String> map:cookies2.entrySet()){
+			System.out.println(map.getKey()+": "+map.getValue());
+		}
+		System.out.println("========Response2 Headers============");
+		Map<String, String> header2 = response2.headers();		
+		for(Map.Entry<String, String> map:header2.entrySet()){
+			System.out.println(map.getKey()+": "+map.getValue());
+		}
+		
+		System.out.println(response2.body());
+//		Thread.sleep(4000);
+		
+//		Connection connection3 = Jsoup.connect("http://bigbasket.com/pc/fruits-vegetables/cut-fruits-vegetables/?nc=nb")
+//				//http://shopezzy.com/parser1/test
+//				//http://bigbasket.com/choose-city/
+//				.method(Method.GET)			
+//				.header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
+//				.header("Accept-Encoding", "gzip, deflate, sdch")
+//				.header("Accept-Language", "en-US,en;q=0.8")
+//				.header("Cache-Control", "max-age=0")
+//				.header("Connection", "keep-alive")
+////				.header("Content-Length", "2680")
+////				.header("Content-Type", "application/x-www-form-urlencoded")
+//				
+//				.cookie("_bb_ftvid", response.cookies().get("_bb_ftvid"))
+//				.cookie("_bb_vid", response.cookies().get("_bb_vid"))
+//				.cookie("csrftoken", response2.cookies().get("csrftoken"))
+//				.cookie("sessionid", response2.cookies().get("sessionid"))
+//				.cookie("_bb_rdt", "MzE1MDEzMjI5MQ==.0") 
+//				.cookie("_bb_pop", "1") 
+//				.cookie("_bb_tc", "0") 
+//				.cookie("_bb_rd", "6") 
+//				.header("Host", "bigbasket.com")
+//				.header("Origin", "http://bigbasket.com")
+//				.referrer("http://bigbasket.com/?next=%2F")
+//				.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.65 Safari/537.36")
+//				
+//				.data("places",place)
+//				.data("csrfmiddlewaretoken",csrfToken)
+//				.data("address_id","")
+//				.data("city_id","1")
+//				.data("next","/?next=%2F");
+////				uiv2-selection
+////				.timeout(25000);
+//		Response response3 = connection3.execute();
+//		
+//		System.out.println(response3.statusCode()+" | "+response3.statusMessage()+" | "+response3.url());
+//		
+//		System.out.println("========Request3 Cookies============");
+//		Map<String, String> cookies3 = connection3.request().cookies();
+//		System.out.println(cookies1.size());
+//		for(Map.Entry<String, String> map:cookies3.entrySet()){
+//			System.out.println(map.getKey()+": "+map.getValue());
+//		}
+//		System.out.println("========Request3 Headers============");
+//		Map<String, String> header3 = connection3.request().headers();		
+//		for(Map.Entry<String, String> map:header3.entrySet()){
+//			System.out.println(map.getKey()+": "+map.getValue());
+//		}
+//		
+//		System.out.println("======== Request3 Parameters ============");
+//		Collection<KeyVal> col1 = connection3.request().data();
+//		System.out.println(col.size());		
+//		for(KeyVal keyval:col){
+//			System.out.println(keyval.key()+": "+keyval.value());
+//		}
+//		
+//		
+//		System.out.println("========Response3 Cookies============");
+//		Map<String, String> cookies4 = response3.cookies();		
+//		for(Map.Entry<String, String> map:cookies4.entrySet()){
+//			System.out.println(map.getKey()+": "+map.getValue());
+//		}
+//		System.out.println("========Response3 Headers============");
+//		Map<String, String> header4 = response3.headers();		
+//		for(Map.Entry<String, String> map:header4.entrySet()){
+//			System.out.println(map.getKey()+": "+map.getValue());
+//		}
+//		
+//		File file = new File("/home/i/test.txt");
+//		if (!file.exists()) {
+//			file.createNewFile();
+//		}
+//
+//		FileWriter fw = new FileWriter(file.getAbsoluteFile());
+//		BufferedWriter bw = new BufferedWriter(fw);
+//		bw.write(response3.body());
+//		bw.close();
+		
+		
+//		System.out.println(response3.body());
+		
+		
+		
+		
+		System.out.println("=========================2 END =================");
+		System.out.println("finished");
+				
+		
+	}catch (Exception e) {
+		System.out.println(GetStackElements.getRootCause(e, BigBasket.class.getName()));
+	}
+	}
+	
+	public static String processURL(String address) {
+		
+		StringBuffer res= new StringBuffer();		     
+		try{
+			URL url = new URL(address);
+		    URLConnection conn = url.openConnection();
+		    conn.setConnectTimeout(25000);
+		    conn.setReadTimeout(25000);
+		    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		    String inputLine;
+		 
+		    while ((inputLine = br.readLine()) != null) {
+		    	res.append(inputLine);
+		    }		    
+		    br.close();
+		     
+		}catch(Exception e){
+			res.append(e.getMessage());
+			
+		}
+		return res.toString();		 
+	}
+	
+}
